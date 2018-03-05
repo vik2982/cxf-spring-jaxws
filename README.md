@@ -8,7 +8,7 @@
 * SOAPUI
 
 ### How to Run
-Open a command prompt in the same directory as the top level pom and then run:
+Open a command prompt, cd to the same directory as the top level pom and run:
 
 mvn clean package
 
