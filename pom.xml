@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.va.cxf.jaxws</groupId>
+	<artifactId>parent-pom</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>cxf-jaxws-app</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<lib.versions.cxf>2.7.8</lib.versions.cxf>
+		<lib.versions.spring>3.2.5.RELEASE</lib.versions.spring>
+	</properties>
+	
+	<dependencyManagement>
+
+		<dependencies>
+								
+			<!-- Spring dependencies -->
+		
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${lib.versions.spring}</version>
+			</dependency>
+		
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${lib.versions.spring}</version>
+			</dependency>
+		
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${lib.versions.spring}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context-support</artifactId>
+				<version>${lib.versions.spring}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${lib.versions.spring}</version>
+				<scope>runtime</scope>
+			</dependency>
+			
+			<!-- Apache CXF for JAX-WS -->
+		
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-frontend-jaxws</artifactId>
+				<version>${lib.versions.cxf}</version>
+				<scope>runtime</scope>
+			</dependency>
+		
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-transports-http</artifactId>
+				<version>${lib.versions.cxf}</version>
+				<scope>runtime</scope>
+			</dependency>
+						
+			<!-- Custom Dependencies -->
+			
+			<dependency>
+				<groupId>com.va.cxf.jaxws</groupId>
+				<artifactId>ws-interface</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			
+		</dependencies>
+	</dependencyManagement>
+	
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.0.2</version>
+					<configuration>
+						<source>1.6</source>
+						<target>1.6</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.cxf</groupId>
+					<artifactId>cxf-codegen-plugin</artifactId>
+					<version>${lib.versions.cxf}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<modules>
+		<module>ws-interface</module> 
+		<module>subtraction-service</module> 
+	</modules>
+
+</project>

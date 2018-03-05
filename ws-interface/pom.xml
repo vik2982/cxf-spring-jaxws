@@ -1,0 +1,76 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.va.cxf.jaxws</groupId>
+		<artifactId>parent-pom</artifactId>
+		<version>1.0-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+  
+  <artifactId>ws-interface</artifactId>
+  <packaging>jar</packaging>
+
+  <name>ws-interface</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
+  <build> 
+		<plugins>
+			 
+			<plugin>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-codegen-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>generate-sources</id>
+						<phase>generate-sources</phase>
+						<configuration>
+						<!-- Execute 'mvn help:effective-pom' in same dir as this pom to see what project.build.directory evaluates to  -->
+							<sourceRoot>${project.build.directory}/generated/cxf</sourceRoot>
+							<wsdlOptions>
+								<wsdlOption>
+									<wsdl>src/main/resources/wsdl/SubtractionService.wsdl</wsdl>
+								</wsdlOption>
+							</wsdlOptions>
+						</configuration>
+						<goals>
+							<goal>wsdl2java</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin> 
+			<!-- Following example shows how to call an ant build file.  The example build.xml simply generates .java files in src/main/java -->
+			<!-- 
+			 <plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.6</version>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<inherited>false</inherited>
+						<configuration>
+							<target>
+								<echo>xxxxxxxxxxxxxxxxxxxxxxxxxxBase
+									Dir: ${project.basedir}</echo>
+								<echo>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxBuild
+									Dir:
+									${project.build.directory}</echo>
+								<ant antfile="build.xml" dir="${project.basedir}" inheritAll="false" />
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			-->
+		</plugins>
+	</build>
+
+ 
+</project>

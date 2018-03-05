@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://cxf.apache.org/jaxws 
+		http://cxf.apache.org/schemas/jaxws.xsd">
+
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+	
+	<import resource="classpath*:applicationContext.xml"/>
+
+	<jaxws:endpoint id="subtractionService"
+		implementor="#subtractionServiceImpl"
+		address="/SubtractionService" />
+		
+	<bean id="subtractionServiceImpl" class="com.va.service.SubtractionServiceImpl" >
+		 <property name="calculator" ref="calculator" />
+	</bean>
+	
+	<bean id="calculator" class="com.va.business.CalculatorImpl"/>
+
+</beans>

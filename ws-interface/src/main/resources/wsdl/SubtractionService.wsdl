@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://va.com/subtraction_service" xmlns:types="http://va.com/subtraction_service/schema/types" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://va.com/subtraction_service">
+	
+	<wsdl:types>
+	
+		<xs:schema xmlns="http://va.com/subtraction_service/schema/types" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://va.com/subtraction_service/schema/types">
+  	    	
+	    	 <xs:element name="subtractionParamOne" type="xs:int"/>
+		     <xs:element name="subtractionParamTwo" type="xs:int"/>
+		     <xs:element name="subtractionResponse" type="xs:int"/>
+	    	
+    	</xs:schema>
+	</wsdl:types>
+    
+    <wsdl:message name="subtractionRequestMesssage">
+        <wsdl:part element="types:subtractionParamOne" name="subtractionParamOne"/>
+        <wsdl:part element="types:subtractionParamTwo" name="subtractionParamTwo"/>
+    </wsdl:message>
+    
+    <wsdl:message name="subtractionResponseMesssage">
+        <wsdl:part element="types:subtractionResponse" name="subtractionResponse"/>
+    </wsdl:message>
+    
+    <wsdl:portType name="SubtractionServiceHttpPortType">
+		<wsdl:operation name="subtract">
+			<wsdl:input message="tns:subtractionRequestMesssage" name="subtractionRequestMesssage"/>
+			<wsdl:output message="tns:subtractionResponseMesssage" name="subtractionResponseMesssage"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	
+	<wsdl:binding name="SubtractionServiceHttpBinding" type="tns:SubtractionServiceHttpPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="subtract">
+			<wsdl:input>
+			     <soap:body message="tns:subtractionRequestMesssage" parts="subtractionParamOne,subtractionParamTwo" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body message="tns:subtractionResponseMessage" parts="subtractionResponse" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="SubtractionService">
+		<wsdl:port binding="tns:SubtractionServiceHttpBinding" name="SubtractionServiceHttpPort">
+			<soap:address location=""/>
+		</wsdl:port>		
+	</wsdl:service>
+
+</wsdl:definitions>
