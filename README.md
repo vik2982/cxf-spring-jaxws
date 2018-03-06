@@ -1,4 +1,4 @@
-# Spring CXF Rest example
+# Spring CXF JAXWS example
 
 ### Prerequisites
 
